@@ -6,6 +6,7 @@
 
 ## (2)其它:
 - logrotate命令.
+- journalctl命令和systemd-journald服务
 
 ## (3)备注:
 - https://tools.ietf.org/html/rfc5424
