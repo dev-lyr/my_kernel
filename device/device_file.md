@@ -19,7 +19,8 @@
 - /dev/hd[a-z]：IDE设备.
 - /dev/sd[a-z]：SCSI设备.
 - /dev/loop[0-7]：本地回环设备.
-- /dev/tty[0-63]：虚拟终端.
+- /dev/tty[0-63]：终端.
+- /dev/pty: 伪终端.
 - /dev/ram[0-15]：内存.
 
 ## (2)备注：
