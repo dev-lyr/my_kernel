@@ -9,6 +9,7 @@
 ## (3)相关命令:
 - systemctl
 - systemd
+- journalctl
 
 ## (4)相关:
 - SysV init系统:需要在系统启动时启动的服务需在/etc/rc数字.d下建立一个到/etc/init.d/xxx下服务执行脚本的软连接; /etc/init.d/xxx: 存放服务端启动脚本, 支持service操作.
