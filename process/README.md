@@ -28,6 +28,11 @@
 - 线程共享进程的堆，同时共享进程全局的栈空间，只是每个线程独享自己的栈.
 - 内核会为每个进程分配两个物理页的内核栈.
 
+## (3)相关id:
+- pid, ppid: getpid, getppid
+- tid: gettid, 在单进程单线程中gettid=getpid, 单进程多线程中所有线程的pid都一样, 但有自己唯一的TID.
+- pthread_self与gettid不同.
+
 # 三 进程状态:
 ## (1)概述:
 - 进程描述符的state字段表示当前进程的所处的状态，这些状态是互斥的，只会处于一种状态.
@@ -73,3 +78,4 @@
 ## (3)相关API:
 - 进程组相关: setpgid,getpgid等.
 - 会话相关: setsid,getsid.
+
