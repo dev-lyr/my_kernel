@@ -12,6 +12,7 @@
 - PID命名空间(CLONE_NEWPID)：Process IDs.
 - User命名空间(ClONE_NEWUSER)：User and group IDs.
 - UTS命名空间(CLONE_NEWUTS)：Hostname and NIS domain name.
+- CGROUP命名空间(CLONE_CGROUP): new cgroup namespace.
 
 ## (3)备注:
 - 文档: Documentation/namespaces.
@@ -19,7 +20,7 @@
 
 # 二 相关API：
 ## (1)clone：
-- clone创建进程时，若flags字段指定上面的CLONE_NEW*，则会创建指定的namespaces，并且这个进程会成为这些namespaces的成员.
+- clone创建进程时，若flags字段指定上面的`CLONE_NEW*`，则会创建指定的namespaces，并且这个进程会成为这些namespaces的成员.
 - 从内核2.6版本才有.
 
 ## (2)setns：
