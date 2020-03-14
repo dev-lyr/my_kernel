@@ -1,7 +1,6 @@
 # 一 常用概念:
 ## (1)局域网(local area network)相关：
 - **vlan(virtual local area network)**: 局域网网段构成的与物理位置无关的逻辑组，属于同一网段的一组端口，这些网段具有共同需求; 每个vlan的帧都有一个标示符，指示该帧属于哪个vlan.交换机不向vlan之外的工作站发生广播信息，不同vlan间的通信需要路由器，可以避免广播风暴; 相关目录：/proc/net/vlan.
-
 - **vxlan(virtual extensible lan)**.
 
 ## (2)广域网(wide area network)相关.
@@ -20,7 +19,7 @@
 ## (3)/etc/resolv.conf:
 - resolver configuration file(man 5 resolv.conf).
 - 功能: DNS客户机的配置文件，用于设置DNS服务器的IP地址以及DNS域名、主机的域名搜索顺序，该文件是**域名解析器**(resolver)使用的配置文件.
-- 格式: nameserver ip, 除了nameserver还包含：domain、search和sortlist等配置选项.最多可以由3个nameserver项.
+- 格式: nameserver ip, 除了nameserver还包含：domain、search和sortlist等配置选项.
 - 注意: 如果主机通过DHCP获得其DNS服务器地址，则不需手动配置这个文件.
 
 ## (4)/etc/host.conf:
