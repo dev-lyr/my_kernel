@@ -21,10 +21,10 @@
 - 参考: mount命令的data参数.
 
 ## (5)相关文件:
-- fs/jbd2/*: 通用的jdb代码.
+- fs/jbd2: 通用的jdb代码.
 - fs/ext4/ext4_jbd2.c: ext4特定扩展.
 - Documentation/filesystems/ext4.txt
-- /proc/fs/jbd2/*
+- /proc/fs/jbd2
 
 ## (6)备注:
 - 日志型文件系统: Ext3, Ext4.

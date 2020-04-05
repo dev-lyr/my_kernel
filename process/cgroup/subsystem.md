@@ -14,6 +14,7 @@
 - pids
 
 ## (2)备注:
+- /proc/cgroups
 - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html-single/resource_management_guide/index 
 
 # 二 cpusets:
@@ -35,7 +36,8 @@
 
 # 三 cpu:
 ## (1)功能：
-- The cpu subsystem **schedules** CPU access to cgroups. Access to CPU resources can be scheduled using two schedulers:: CFS(Completely Fair Scheduler)和RT(Real-Time scheduler).
+- The cpu subsystem **schedules** CPU access to cgroups. 
+- Access to CPU resources can be scheduled using two schedulers:: CFS(Completely Fair Scheduler)和RT(Real-Time scheduler).
 - **CFS**: a proportional share scheduler which divides the CPU time (CPU bandwidth) proportionately between groups of tasks (cgroups) depending on the **priority/weight of the task or shares assigned to cgroups**.
 - **RT**: a proportional share scheduler which divides the CPU time (CPU bandwidth) proportionately between groups of tasks (cgroups) depending on the priority/weight of the task or shares assigned to cgroups.
 

@@ -8,20 +8,20 @@
 - **层级 (hierarchy)**：控制组可以组织成分层形式(一颗控制组树)，子节点继承父节点的特定属性.
 - **子系统 (subsystems)**：一个子系统就是一个**资源管理器**，比如cpu子系统，mem子系统等, 每个子系统对于一个挂载点.
 
-## (3)参考：
-- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01
-- https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt
-
-## (4)用法:
+## (3)用法:
 - 每个子系统对于一个挂载点, 例如:mount{cpuset = /cgroup/cpuset}
 - 每个cgroup是子系统挂载点目录下面的一个子目录, 比如:/cgroup/cpuset/producer, 对于producer这个cgroup.
 - 每个cgroup目录下的**tasks**文件表示该cgroup下进程的id.
 - 每个cgroup在相关子系统的限制属性通过该cgroup目录下的相关文件进行限制, 例如: /cgroup/cpuset/producer/cpuset.cpus.
 - 备注: 上述操作可以通过配置文件也可以手动命令行操作.
 
-## (6)相关包:
+## (4)相关包:
 - libcgroups: 默认安装, **默认子系统挂载在/sys/fs/cgroup目录**.
 - libcgroup-tools.
+
+## (5)参考：
+- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01
+- https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt
 
 # 二 配置文件:
 ## (1)相关配置文件:
@@ -36,9 +36,9 @@
 
 ## (3)cgrules.conf:
 - 格式: `<user>:<process name> <controllers> <destination>`
-- user: 可以是一个用户名, 组名, *(所有用户或组), %.
+- user: 可以是一个用户名, 组名, 星号(所有用户或组), %.
 - process name: 可选, 可以是一个pid或者进程的全路径cmd.
-- controllers: 逗号分隔的controller names(没有空格)或*(所有挂载的controllers).
+- controllers: 逗号分隔的controller names(没有空格)或星号(所有挂载的controllers).
 - destination.
 
 # 三 相关命令:
@@ -62,3 +62,7 @@
 ## (6)cgexec
 - 语法: cgexec [-h] [-g <controllers>:<path>] [--sticky] command [arguments]
 - 功能: 在指定的cgroups里运行任务.
+
+## (7)cgget和cgset
+
+## (8)cgsnapshot
