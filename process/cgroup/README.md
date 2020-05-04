@@ -19,7 +19,22 @@
 - libcgroups: 默认安装, **默认子系统挂载在/sys/fs/cgroup目录**.
 - libcgroup-tools.
 
-## (5)参考：
+## (5)子系统类型:
+- cpuset
+- cpu
+- cpuacct
+- memory
+- devices
+- freezer
+- net_cls
+- net_prio
+- blkio
+- perf_event
+- hugetlb
+- pids
+
+## (6)参考：
+- kernel/cgroup:代码.
 - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01
 - https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt
 
@@ -66,3 +81,7 @@
 ## (7)cgget和cgset
 
 ## (8)cgsnapshot
+
+# 四 通知:
+## (1)概述:
+- 通知API允许用户空间应用接收cgroup状态变化的通知, 目前只支持OOM控制文件(memory.oom_control).

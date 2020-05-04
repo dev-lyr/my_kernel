@@ -1,9 +1,9 @@
 # 一 概述:
 ## (1)概述:
-- Linux的调度基于分时(time sharing)技术, 可抢占的策略, 动态优先级.
+- Linux的调度基于**分时(time sharing)**技术, 可抢占的策略, 动态优先级.
 - 调度算法需要在两个矛盾的目标中寻找平衡: 响应时间短和最大系统利用率(高吞吐量).
 - 调度算法根据进程是普通进程还是实时进程而不同.
-- 进程可分为I/O密集型和CPU密集型.
+- 进程可分为: I/O密集型和CPU密集型.
 - Linux调度器以模块的形式提供, 目的允许不同类型的进程可以选择针对性的调度策略.
 - 系统中每个cpu都有自己的运行队列(就绪队列), 系统中每个可运行进程属于且只属于一个可运行队列, 并且只能在该运行队列的CPU上执行.
 - Linux每个cpu都有一个swapped/idle进程(id为0), cpu空闲时候会去唤醒该进程.
@@ -11,7 +11,7 @@
 ## (2)调度策略(policy):
 - **实时进程(real-time process)**: SCHED_FIFO, SCHED_RR(默认)和SCHED_DEADLINE.
 - **普通进程(normal process)**: SCHED_NORMAL(也称SCHED_OTHRE, 默认Linux分时调度)和SCHED_BATCH.
-- SCHED_IDLE: 调度优先级很低的进程, 进程的静态优先级为0.
+- **SCHED_IDLE**: 调度优先级很低的进程, 进程的静态优先级为0.
 - 文件: include/uapi/linux/sched.h
 - 备注: SCHED_NORMAL和SCHED_BATCH和SCHED_IDLE对应调度器类cfs; SCHED_FIFO和SCHED_RR对象调度器类rt; SCHED_DEADLINE对应dt.
 
@@ -87,7 +87,6 @@
 # 五 时间片
 
 # 六 配置项:
-<pre><code>
 kernel.sched_autogroup_enabled
 kernel.sched_cfs_bandwidth_slice_us
 kernel.sched_child_runs_first
@@ -103,7 +102,6 @@ kernel.sched_shares_window_ns
 kernel.sched_time_avg_ms
 kernel.sched_tunable_scaling
 kernel.sched_wakeup_granularity_ns
-</code></pre>
 
 
 # 七 相关数据结构:
