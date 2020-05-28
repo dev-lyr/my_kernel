@@ -3,13 +3,18 @@
 - syslog
 - syslog-ng: syslog-next gen，https://syslog-ng.org/.
 - rsyslog: https://www.rsyslog.com/
+- systemd-journald服务
 
 ## (2)其它:
+- dmesg
+- journalctl
 - logrotate命令.
-- journalctl命令和systemd-journald服务
+
+## (3)
 
 ## (3)备注:
 - https://tools.ietf.org/html/rfc5424
+
 
 # 二 printk:
 ## (1)功能:

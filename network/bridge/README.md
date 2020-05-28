@@ -15,26 +15,13 @@
 - 局域网网段构成的与物理位置无关的逻辑组，属于同一网段的一组端口，这些网段具有共同需求. 每个vlan的帧都有一个标示符，指示该帧属于哪个vlan. 交换机不向vlan之外的工作站发生广播信息，不同vlan间的通信需要路由器. 目录: /proc/net/vlan.
 - 可解决广播风暴(broadcast storm).
 
-# 二 brctl命令:
-## (1)功能:
+# 二 相关命令:
+## (1)brctl:
 - linux内核中ethernet bridge的创建,维护和配置.
 - 相关包: bridge-utils.
 - 用法: brctl [command]
 
-## (2)命令:
-- `addbr <bridge>: add bridge.`
-- `delbr <bridge>: delete bridge.`
-- `addif <bridge> <device>: add interface to bridge.`
-- `delif <bridge> <device>: delete interface from bridge.`
-- `hairpin <bridge> <port> {on|off}: turn hairpin on/off.`
-- `setageing <bridge> <time>: set ageing time.`
-- `setbridgeprio <bridge> <prio>: set bridge priority.`
-- `setfd <bridge> <time>: set bridge forward delay.`
-- `sethello <bridge> <time>: set hello time.`
-- `setmaxage <bridge> <time>: set max message age.`
-- `setpathcost <bridge> <port> <cost>: set path cost.`
-- `setportprio <bridge> <port> <prio>: set port priority.`
-- `show [ <bridge> ]: show a list of bridges.`
-- `showmacs <bridge>: show a list of mac addrs.`
-- `showstp <bridge>: show bridge stp info.`
-- `stp <bridge> {on|off}: turn stp on/off.`
+## (2)ip link
+
+## (3)bridge
+
