@@ -7,6 +7,7 @@
 - kernel编译时需指定CONFIG_HUGETLBFS和CONFIG_HUGETLB_PAGE选项.
 - 用户可以使用mmap系统调用或shmget和shmat来使用大页.
 - /Documentation/vm/hugetlbpage.txt
+- hugetlbfs: https://github.com/libhugetlbfs/libhugetlbfs
 
 # 二 操作:
 ## (1)/proc/meminfo:

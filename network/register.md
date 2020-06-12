@@ -5,7 +5,7 @@
 
 # 二 网络层:
 ## (1)协议处理函数的注册:
-- 当一个协议注册时, 内核会调用dev_add_pack注册协议处理函数, 参数为协议相关的packet_type, 例如: ip_packet_type.
+- 当一个协议注册时, 内核会调用**dev_add_pack**注册协议处理函数, 参数为协议相关的packet_type, 例如: ip_packet_type.
 
 ## (2)选择协议处理函数:
 - 驱动程序接收到帧时, 会将其保存在sk_buff结构中, sk_buff的protocol会被初始化, 该字段值会由netif_receive_sbk函数来查询以确定使用哪个网络层函数来处理该帧.
@@ -20,7 +20,7 @@
 
 # 三 传输层:
 ## (1)协议函数的注册:
-- 传输层协议通过inet_add_protocol来注册协议处理函数.
+- 传输层协议通过**inet_add_protocol**来注册协议处理函数.
 
 ## (2)选择协议处理函数:
 - net/ipv4/ip_input.c的ip_local_deliver_finish根据协议类型选择协议的handler处理包.

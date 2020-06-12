@@ -14,6 +14,7 @@
 - neigh
 - ntable
 - tunnel
+- netns
 - 等等.
 
 ## (4)options:
@@ -31,3 +32,4 @@
 - 添加虚拟link.
 - 类型: bridge,bond,vxlan,veth,vxlan,tap等.
 
+# 三 netns

@@ -1,0 +1,15 @@
+kernel.sched_autogroup_enabled
+kernel.sched_cfs_bandwidth_slice_us
+kernel.sched_child_runs_first
+kernel.sched_latency_ns
+kernel.sched_migration_cost_ns
+kernel.sched_min_granularity_ns
+kernel.sched_nr_migrate
+kernel.sched_rr_timeslice_ms
+kernel.sched_rt_period_us
+kernel.sched_rt_runtime_us
+kernel.sched_schedstats
+kernel.sched_shares_window_ns
+kernel.sched_time_avg_ms
+kernel.sched_tunable_scaling
+kernel.sched_wakeup_granularity_ns

@@ -17,9 +17,12 @@
 - memory.memsw.limit_in_bytes: 设置内存和swap最大使用量.
 - memory.failcnt
 - memory.memsw.failcnt
+- memory.swappiness
 
 ## (3)memory.oom_control:
 - 0/1: 开启或者关闭一个cgroup的oom kill.
 - 0表示开启, 默认是开启.
+
+## (4)kmem相关
 
 # 三 hugetlb控制文件

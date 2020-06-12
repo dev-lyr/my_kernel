@@ -1,9 +1,12 @@
 # 一 概述
 ## (1)功能:
 - iptables/ip6tables: IPv4/IPv6的包过滤和NAT管理工具.
-- 语法: `类似iptables [-t table] {-A|-C|-D} chain rule-specification`
 
-## (2)常用选项:
+## (2)用法:
+- iptables [-t table] {-A|-C|-D} chain rule-specification
+- 等等
+
+## (3)常用选项:
 - `-t,--table table`: 指定对应执行操作命令的表, 默认为filter表.
 - `-L,--list [chain]`: 查询指定chain的规则,若没指定chain则显示所有chain.
 - `-S,--list-rules [chain]`: 查询指定chain的规则, 若没指定chain则以iptables-save形式显示所有规则.
@@ -17,22 +20,7 @@
 - `-E,--rename-chain old-chain new-chain`: 修改链的名字.
 - `-P,--policy chain target`: 设置chain的target, 只有build-in链可以有target.
 
-
-## (3)rule：
-- rule-specification = [matches...] [target] 
-- match = -m matchname [per-match-options] 
-- target = -j targetname [per-target-options]
-- 参数: man iptables
-
-## (4)target：
-- ACCEPT：let the packet through.
-- DROP：drop the packet on the floor.
-- QUEUE：pass the packets to userspace.
-- RETURN：stop traversing this chain  and  resume at  the  next  rule in the previous (calling) chain. If the end of a built-in chain is reached or a rule in a built-in chain with target RETURN is matched, the target specified by the chain policy determines the fate of the packet.
-- 自定义链
-- 备注: A firewall rule specifies criteria for a packet and a target.If the packet does not match, the next rule in the chain is examined; if it does match,then the next rule is specified by the value of the target, which can be the name of a **user-defined chain, one of the targets described in iptables-extensions(8),or one of the special values ACCEPT,DROP or RETURN.**
-
-## (5)备注:
+## (4)备注:
 - 其它: arptables, ipv6tables, ebtables
 - nftables: 新版本, 用来替代xxtables, 3.13以后可用, 参考https://www.netfilter.org/projects/nftables.
 
@@ -54,7 +42,17 @@
 ## (5)security表.
 
 # 三 rule规范:
-## (1)相关参数:
+## (1)概述:
+- Each chain is a list of rules which can match a set of packets.  
+- Each rule specifies what to do(target) with a packet that matches.
+- A firewall rule specifies criteria for a packet and a target. If the packet does not match, the next rule in the chain is examined; if it does match,then the next rule is specified by the value of the target, which can be the name of a user-defined chain, one of the targets described in iptables-extensions(8),or one of the special values ACCEPT,DROP or RETURN.
+
+## (2)语法:
+- rule-specification = [matches...] [target] 
+- match = -m matchname [per-match-options] 
+- target = -j targetname [per-target-options]
+
+## (3)相关参数:
 - `-4,--ipv4`
 - `-6,--ipv6`
 - `[!] -p,--protocol protocol`: rule的协议, 可以是tcp,udp,icmp等等, 协议名字参考/etc/protocols, all代表所有协议, all是默认值, 其中数字0等同于all. 可以通过!进行取反.
@@ -63,3 +61,11 @@
 - `-m,--match match`: 指定一个match, 一个用来测试指定属性的扩展模块.
 - `-j,--jump target`: 指定rule的target, 指定当rule match时需做什么, target可以是: 用户自定义的chain, 内置的target或一个扩展.
 - `-g, --goto chain`.
+
+# 四 target:
+## (1)类型:
+- ACCEPT：let the packet through.
+- DROP：drop the packet on the floor.
+- RETURN：stop traversing this chain  and  resume at  the  next  rule in the previous (calling) chain. If the end of a built-in chain is reached or a rule in a built-in chain with target RETURN is matched, the target specified by the chain policy determines the fate of the packet.
+- 自定义链
+- iptables-extensions中定义的target.

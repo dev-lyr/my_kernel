@@ -10,7 +10,6 @@
 - OBS(Object-Based storage)
 
 ## (3)相关系统:
-- EXT4
 - NFS
 - HDFS
 - Ceph

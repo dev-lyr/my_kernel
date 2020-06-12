@@ -1,6 +1,6 @@
 # 一 概述:
 ## (1)概述:
-- Linux的调度基于**分时(time sharing)**技术, 可抢占的策略, 动态优先级.
+- Linux的调度基于**分时(time sharing)**技术, **可抢(preemptable)占**的策略, **动态优先级**.
 - 调度算法需要在两个矛盾的目标中寻找平衡: 响应时间短和最大系统利用率(高吞吐量).
 - 调度算法根据进程是普通进程还是实时进程而不同.
 - 进程可分为: I/O密集型和CPU密集型.
@@ -12,17 +12,18 @@
 - **实时进程(real-time process)**: SCHED_FIFO, SCHED_RR(默认)和SCHED_DEADLINE.
 - **普通进程(normal process)**: SCHED_NORMAL(也称SCHED_OTHRE, 默认Linux分时调度)和SCHED_BATCH.
 - **SCHED_IDLE**: 调度优先级很低的进程, 进程的静态优先级为0.
-- 文件: include/uapi/linux/sched.h
 - 备注: SCHED_NORMAL和SCHED_BATCH和SCHED_IDLE对应调度器类cfs; SCHED_FIFO和SCHED_RR对象调度器类rt; SCHED_DEADLINE对应dt.
 
-## (3)与进程调度相关的进程描述符字段:
+## (3)进程描述符相关字段:
 - int prio: 进程动态优先级, **调度器使用的是这个字段**, 通过effective_prio计算出.
 - int normal_prio: 进程动态优先级, 基于进程的静态优先级和调度策略(实时进程或常规进程)计算出来.
 - int static_prio: 进程静态优先级, 在进程启动时分配, 可通过nice和sched_setscheduler系统调用修改.
 - unsigned long rt_priority: 进程实时优先级, 范围0-99, 越小优先级越高.
 - unsigned int policy: 调度策略.
+- sched_class
+- sched_entity
 
-## (4)与进程调度相关系统调用:
+## (4)相关系统调用:
 - nice和renice和setpriority: 设置nice值(-19-20), 即设置静态优先级.
 - chrt: 设置一个进程的实时属性.
 - sched_getscheduler和sched_setscheduler: 获取和设置**进程**的调度策略.
@@ -32,9 +33,15 @@
 - sched_yeild: 暂时让出处理器.
 - sched_getcpu/getcpu
 
-## (5)备注:
-- Documentation/scheduler/*
-- kernel/sched/*
+## (5)抢占时机:
+- 高优先级进程TASK_RUNNING状态.
+- 时间片到期.
+
+## (6)备注:
+- Documentation/scheduler
+- kernel/sched
+- include/uapi/linux/sched.h
+- include/linux/sched.h
 
 # 二 普通进程的调度:
 ## (1)概述:
@@ -84,26 +91,45 @@
 ## (6)static_prio:
 - 进程静态优先级, 在进程启动时分配, 可通过nice和sched_setscheduler系统调用修改.
 
-# 五 时间片
+# 五 时间片:
+## (1)概述:
+- 时间片大小是进程级别的, 针对每个进程计算时间片.
+- 时间片长短对系统性能影响很大, 太长或者太短都不行.
+- 若太短,例如和进程切换接近, 则会导致CPU一半时间花费在进程切换上. 
+- 若太长,当出现两个进程优先级相同的场景, 会导致延迟比较大.
 
-# 六 配置项:
-kernel.sched_autogroup_enabled
-kernel.sched_cfs_bandwidth_slice_us
-kernel.sched_child_runs_first
-kernel.sched_latency_ns
-kernel.sched_migration_cost_ns
-kernel.sched_min_granularity_ns
-kernel.sched_nr_migrate
-kernel.sched_rr_timeslice_ms
-kernel.sched_rt_period_us
-kernel.sched_rt_runtime_us
-kernel.sched_schedstats
-kernel.sched_shares_window_ns
-kernel.sched_time_avg_ms
-kernel.sched_tunable_scaling
-kernel.sched_wakeup_granularity_ns
+# 六 运行队列:
+## (1)概述:
+- 每个cpu有自己的运行队列, 存在放per-cpu变量中, 系统的所有运行队列都在runqueues数组.
+- 文件: include/uapi/linux/sched.h, struct rq.
 
+## (2)相关函数:
+- this_rq
+- cpu_rq
 
-# 七 相关数据结构:
-## (1)struct rq(每个cpu的运行队列runqueue):
-- kernel/sched/sched.h
+## (3)通用属性:
+- lock 
+- load
+- cpu_load
+- nr_running: 运行队列上可运行进程数量, 不考虑优先级和调度类.
+- curr: 指向当前运行进程的task_struct.
+- idle: 指向idle进程的task_struct.
+- nr_switches
+- nr_load_updates
+- struct cfs_rq cfs: cfs调取器的就绪队列.
+- struct rt_rq rt: 实时调度器的就绪队列.
+- struct dl_rq dl
+
+## (4)smp相关
+
+# 六 其它结构:
+## (1)概述:
+- sched_class: fair_sched_class,rt_sched_class等, 是task_struct的属性.
+- sched_entity: 调度实体,调度器操作的对象,进程task_struct都有一个调度实体, 因此每个进程都是一个调度实体.
+- sched_domain: 调度域.
+
+## (2)sched_class:
+
+## (3)sched_entity:
+
+## (4)sched_domain:

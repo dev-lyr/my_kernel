@@ -3,13 +3,14 @@
 - netfilter框架: 包过滤(filtering), 网络地址转换(NA[P]T)和其它包管理(mangling).
 
 ## (2)组成:
-- netfilter: 由内核中一系列**hook**组成, hook允许内核模块在网络协议栈注册callback函数, 当每个包穿过(traverse)对应网络协议栈中的对应hook时callback函数会被调用.
-- iptables.
-- connection tracking(ip_conntrack, nf_conntrack)
-- NAT子系统
+- **netfilter**: 由内核中一系列**hook**组成, hook允许内核模块在网络协议栈注册callback函数, 当每个包穿过(traverse)对应网络协议栈中的对应hook时callback函数会被调用.
+- **iptables**: 一个用于定义rulesets的表结构.
+- **connection tracking**
+- **NAT子系统**
 
 ## (3)备注:
 - net/netfilter
+- https://www.netfilter.org/documentation/index.html
 
 # 二 Hook:
 ## (1)Hook支持的协议类型:
@@ -45,16 +46,16 @@
 - 参见: include/uapi/linux/netfilter_arp.h
 
 ## (5)全局变量:
-- struct nf_hook_entry _rcu *hooks[NFPROTO_NUMPROTO][NF_MAX_HOOKS]:各种协议类型的注册的hook的集合, 参考:include/net/netns/netfilter.h
+- hooks[NFPROTO_NUMPROTO][NF_MAX_HOOKS]:各种协议类型的注册的hook的集合, 参考:include/net/netns/netfilter.h
 
 ## (6)备注:
 - include/linux/netfilter.h
-- net/netfilter/*.
+- net/netfilter.
 
 # 三 Hook结构:
 ## (1)struct nf_hook_ops(表示一个Hook):
 - struct list_head list
-- nf_hookfn * hook: hook的callback函数.
+- hook: hook的callback函数.
 - int priority: 优先级.
 - unsigned int hooknum
 - u_int8_t pf: 协议.

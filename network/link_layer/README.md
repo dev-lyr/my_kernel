@@ -45,7 +45,6 @@
 
 ## (2)接收:
 - NAPI(Intel千兆网卡为例): 中断处理程序为e1000_intr, 在drivers/net/ethernet/intel/e1000e/netdev.c, 会调用__napi_schedule.
-- 非NAPI(HP 100为例): 中断处理函数hp100_rx, drivers/net/ethernet/hp/hp100.c,会调用netif_rx(struct sk_buff *skb): 会将包放在softnet_data.input_pkt_queue, NAPI则不需要.
 
 ## (3)发送:
 - 发送是内核主动的(dev_queue_xmit), 好像只使用了软中断.

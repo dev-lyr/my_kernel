@@ -50,4 +50,3 @@
 - ethtool -i xxx: 查询网卡的驱动的相关信息.
 - ethtool -k/-K: 查询和修改网卡offload配置.
 - ethtool -s/--change xxx: 修改网卡的配置.
-- 详见: kernel_network的网卡文章.

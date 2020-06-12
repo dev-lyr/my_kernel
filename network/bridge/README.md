@@ -15,6 +15,8 @@
 - 局域网网段构成的与物理位置无关的逻辑组，属于同一网段的一组端口，这些网段具有共同需求. 每个vlan的帧都有一个标示符，指示该帧属于哪个vlan. 交换机不向vlan之外的工作站发生广播信息，不同vlan间的通信需要路由器. 目录: /proc/net/vlan.
 - 可解决广播风暴(broadcast storm).
 
+## (6)vxlan
+
 # 二 相关命令:
 ## (1)brctl:
 - linux内核中ethernet bridge的创建,维护和配置.

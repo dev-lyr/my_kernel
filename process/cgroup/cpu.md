@@ -4,14 +4,11 @@
 
 ## (2)cpu子系统:
 - The cpu subsystem **schedules** CPU access to cgroups. 
-- 调度器类型: CFS(Completely Fair Scheduler)和RT(Real-Time scheduler).
-- **CFS**: a proportional share scheduler which divides the CPU time (CPU bandwidth) proportionately between groups of tasks (cgroups) depending on the **priority/weight of the task or shares assigned to cgroups**.
-- **RT**: a proportional share scheduler which divides the CPU time (CPU bandwidth) proportionately between groups of tasks (cgroups) depending on the priority/weight of the task or shares assigned to cgroups.
 
 ## (3)cpuacct子系统:
 - 生成cgroup中task使用的cpu资源的统计, 包含子groups中的tasks.
 
-## (4)pids子系统:
+## (4)pids:
 - 用来限制一个cgroup可以创建的进程数量, 当超过限制时不能再fork或clone.
 
 # 二 cpuset:

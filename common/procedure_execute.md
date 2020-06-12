@@ -1,4 +1,4 @@
-# 一 可执行文件:
+# 一 概述:
 ## (1)概述:
 - Linux标准的可执行格式是ELF(Executable and Linking Format).
 - Linux支持其他不同格式的执行文件, 能运行为其他系统编译的程序.
