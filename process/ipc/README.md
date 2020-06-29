@@ -53,13 +53,14 @@
 
 ## (2)类型:
 - 使用内存映射文件(memory-mapped file): open函数打开一个文件, 然后mmap函数将fd映射到当前进程的地址空间, 对有亲缘或无亲缘关系的进程都适用.
-- 共享内存区对象(shared-memory object): shm_open打开一个posix IPC对象,返回的描述符由mmap函数映射到当前进程的地址空间.
 - 匿名内存映射(anonymous memory mapping): 避免创建和打开文件, 用来提供父子进程间的内存共享.
+- 共享内存区对象(shared-memory object): shm_open打开一个posix IPC对象,返回的描述符由mmap函数映射到当前进程的地址空间.
 
 ## (3)相关函数:
 - mmap, munmap: map or unmap files or devices into memory.
 - msync: synchronize a file with a memory map.
 - shm_open/shm_ulink: Create/open or unlink POSIX shared memory objects.
+- shmget: allocates a System V shared memory segment.
 
 ## (4)备注:
 - /proc/pid/maps

@@ -11,6 +11,7 @@
 ## (3)备注:
 - net/netfilter
 - https://www.netfilter.org/documentation/index.html
+- nftables
 
 # 二 Hook:
 ## (1)Hook支持的协议类型:
