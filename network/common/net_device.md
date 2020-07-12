@@ -1,16 +1,21 @@
 # 一 概述:
 ## (1)功能:
-- Linux内核中每种网络设备(真实设备(如NIC)或虚拟设备(Bonding或VLAN))都用这个数据结构表示, 包括软硬件配置信息等.
+- Linux内核中每种网络设备(真实设备(如NIC)或虚拟设备(如:Bonding或VLAN))都用这个数据结构表示, 包括软硬件配置信息等.
 - 详见include/linux/netdevice.h.
 
-## (2)常用字段:
-- const struct net_device_ops * netdev_ops: 定义一些callback指针, 例如:发送包时候调用xxx.
+## (2)net_device常用字段:
+- const struct net_device_ops * netdev_ops: 定义一些callback指针.
+- netdev_rx_queue
 
-# 二 struct net_device_ops:
+# 二 常用函数:
+## (1)netdev_start_xmit:
+- 传输帧, 底层调用net_device_ops的ndo_start_xmit.
+
+# 三 struct net_device_ops:
 ## (1)ndo_start_xmit:
 - 当package需要传输时调用的函数.
 
-# 三 enum net_device_flags:
+# 四 enum net_device_flags:
 ## (1)功能:
 - 网络设备的flags.
 - include/uapi/linux/if.h

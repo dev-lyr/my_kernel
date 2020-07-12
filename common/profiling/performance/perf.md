@@ -18,7 +18,7 @@
 
 ## (4)备注:
 - tools/perf
-- kernel/events/*
+- kernel/events
 - https://perf.wiki.kernel.org/index.php/Main_Page
 - http://www.brendangregg.com/perf.html
 
