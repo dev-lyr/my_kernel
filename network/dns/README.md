@@ -2,6 +2,10 @@
 ## (1)概述:
 - man resolver
 
+## (2)相关命令:
+- dig
+- nslookup
+
 # 二 常用文件:
 ## (1)/etc/hosts:
 - the static lookup for hostnames(man 5 hosts).

@@ -35,17 +35,13 @@
 - 等等.
 
 # 二 相关操作(kernel/softirq.c):
-## (1)open_softirq(int nr, void (*action) (struct softirq_action *)):
+## (1)open_softirq:
 - 初始化软中断, 就是将软中断的处理函数根据标号塞入softirq_vec数组.
 
-## (2)raise_softirq(int nr, void (*action) (struct softirq_action * )):
-- 激活软中断, 通常中断处理程序会在返回前激活它的软中断, 使其在稍后被执行, 逻辑如下:
-- 首选执行local_irq_save保存eflags寄存器的IF标志的值并禁用本地CPU的中断.
-- 执行__raise_softirq_irqoff, 把本地cpu软中断标记为挂起状态.
-- 若in_interrupt()为1则不执行软中断, 调用local_irq_restore恢复local_irq_save保存的值, 此时表明已经在中断上下文中调用raise_sofrirq或本地禁止了软中断.
-- 否则, 调用wakeup_softirqd()唤醒本地CPU的ksoftireqd内核线程.
+## (2)raise_softirq:
+- 激活软中断, 通常中断处理程序会在返回前激活它的软中断, 使其在稍后被执行. 
 
-## (3)do_softirq(void):
+## (3)do_softirq:
 - 软中断的执行.
 
 # 三 ksoftirqd内核线程:

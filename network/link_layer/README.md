@@ -41,13 +41,9 @@
 
 # 四 中断处理程序:
 ## (1)功能:
-- 把帧拷贝到sk_buff数据结构; 对一些sk_buff做初始化;更新一些设置私有的参数.
-
-## (2)接收:
-- NAPI(Intel千兆网卡为例): 中断处理程序为e1000_intr, 在drivers/net/ethernet/intel/e1000e/netdev.c, 会调用__napi_schedule.
-
-## (3)发送:
-- 发送是内核主动的(dev_queue_xmit), 好像只使用了软中断.
+- 把帧拷贝到sk_buff数据结构. 
+- 对一些sk_buff做初始化.
+- 更新一些设置私有的参数.
 
 # 五 网络如何使用soft IRQ:
 ## (1)概述:
@@ -76,6 +72,5 @@
 - struct list_head poll_list: 双向链表, 其中的设备都是带有输入帧等待处理的.
 
 ## (3)发送字段:
-- struct Qdisc *output_queue: 输出队列, 其中的设备有数据需要发送.
-- struct Qdisc **output_queue_tailp;
-- struct sk_buff *completion_queue
+- output_queue: 输出队列, 其中的设备有数据需要发送.
+- completion_queue

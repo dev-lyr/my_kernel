@@ -1,12 +1,12 @@
-# 一 概述：
-## (1)功能：
+# 一 概述:
+## (1)功能:
 - linux内核提供一种机制, 可以限制、记录和隔离进程组所使用的物理资源(cpu, mem, io等).
 
-## (2)相关概念：
-- 任务(task)：在cgroups中，任务就是进程。
-- **控制组 (control group)**：按照某种标准划分的**进程**，cgroups中**资源控制以控制组为单位进行**，一个进程可以加入和退出一个控制组.
-- **层级 (hierarchy)**：控制组可以组织成分层形式(一颗控制组树)，子节点继承父节点的特定属性.
-- **子系统 (subsystems)**：一个子系统就是一个**资源管理器**，比如cpu子系统，mem子系统等, 每个子系统对于一个挂载点.
+## (2)相关概念:
+- **任务(task)**:在cgroups中,任务就是进程.
+- **控制组 (control group)**:按照某种标准划分的**进程**，cgroups中**资源控制以控制组为单位进行**，一个进程可以加入和退出一个控制组.
+- **层级 (hierarchy)**:控制组可以组织成分层形式(一颗控制组树)，子节点继承父节点的一些属性.
+- **子系统 (subsystems)**:一个子系统就是一个**资源管理器**，比如cpu子系统，mem子系统等, 每个子系统对于一个挂载点.
 
 ## (3)用法:
 - 每个子系统对于一个挂载点, 例如:mount{cpuset = /cgroup/cpuset}
@@ -33,7 +33,7 @@
 - hugetlb
 - pids
 
-## (6)参考：
+## (6)参考:
 - kernel/cgroup:代码.
 - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01
 - https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt

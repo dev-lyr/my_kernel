@@ -8,10 +8,15 @@
 - **connection tracking**
 - **NAT子系统**
 
-## (3)备注:
+## (3)相关命令:
+- iptables
+- ebtables
+- arptables
+- nftables: 用来替换{ip,ip6,arp,eb}tables
+
+## (4)备注:
 - net/netfilter
 - https://www.netfilter.org/documentation/index.html
-- nftables
 
 # 二 Hook:
 ## (1)Hook支持的协议类型:
@@ -36,7 +41,13 @@
 - 适用于: NFPROTO_INET, NFPROTO_IPV4和NFPROTO_IPV6.
 
 ## (3)NFPROTO_BRIDGE的Hook点类型:
-- NF_BR_PTR_ROUTING等.
+- NF_BR_PRE_ROUTING
+- NF_BR_LOCAL_IN		
+- NF_BR_FORWARD		
+- NF_BR_LOCAL_OUT		
+- NF_BR_POST_ROUTING	
+- NF_BR_BROUTING		
+- NF_BR_NUMHOOKS		
 - 参见: include/uapi/linux/netfilter_bridge.h
 
 ## (4)NFPROTO_ARP的Hook点类型:
