@@ -12,21 +12,17 @@
    
 ## (3)相关名词:
 - VNI: vxlan network identifier(或vxlan segment id).
-- VTEP: vxlan tunnel end point, vxlan tunnel的originates或terminates.
+- VTEP: vxlan tunnel end point, vxlan tunnel的起点或终点.
 - VXLAN Segment: VXLAN Layer 2 overlay network over which VMs communicate.
 - VXLAN Gateway: an entity that forwards traffic between VXLANs.
 
 ## (4)备注:
 - https://tools.ietf.org/html/rfc7348
 - VXLAN GPE
+- Documentation/networking/vxlan.txt
+- drivers/net/vxlan.c
 
-# 二 工作方式:
-## (1)概述:
-- 每个overlay被称作VXLAN segment, 只有在同一个VXLAN segment的虚拟机可以相互通信.
-- 每个VXLAN segment通过一个24位的segment ID表示, 被称作VNI.
-- VNI确定单个vm发起的inner MAC frame的范围, 因为可以在不同的VNI中有覆盖(overlapping)MAC地址, 不同VNI中的流量是隔离的.
-
-# 三 VXLAN帧格式
+# 二 VXLAN帧格式
 ## (1)概述:
 - 格式: 在内部mac帧进行封装,增加四个头部(从内到外): VXLAN Header(8个字节), Outer UDP Header, Outer IP Header和Outer Etherner Head.
 
@@ -46,3 +42,14 @@
 
 ## (5)Outer Ethernet Header:
 - 帧中的outer destination MAC地址可能是目的VTEP的地址或者中间三层路由的地址.
+
+# 三 工作方式:
+## (1)概述:
+- 每个overlay被称作VXLAN segment, 只有在同一个VXLAN segment的虚拟机才可以相互通信.
+- 每个VXLAN segment通过一个24位的segment ID表示, 被称作VNI.
+- VNI确定单个vm发起的inner MAC frame的范围, 因为可以在不同的VNI中有覆盖(overlapping)MAC地址, 不同VNI中的流量是隔离的.
+
+# 四 VTEP:
+## (1)概述:
+- VXLAN Tunnel Endpoints(VXLAN隧道端点)是VXLAN网络的边缘设备, 是VXLAN隧道的起点或终点.
+- VXLAN对用户原始数据帧的封装和解封装都在VTEP上进行, VTEP可以是一台独立的网络设备(交换机),也可以是服务器上虚拟交换机.

@@ -1,9 +1,9 @@
 # 一 概述:
 ## (1)概述:
 - Documentation/sysctl/net.txt
-- Documentation/networking/*
+- Documentation/networking
 
-# 二 net.core.*
+# 二 net.core
 ## (1)somaxconn:
 - 设置socket的listen的backlog队列, 当调用listen时指定的backlog大于该值时使用该值.
 

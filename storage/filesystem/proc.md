@@ -33,6 +33,7 @@
 
 # 三 进程相关(/proc/pid目录):
 ## (1)常用:
+- /proc/self: 当前访问/proc的进程的信息, 与/proc/pid一样, 免去获得当前进程PID, 就是一个当当前进程PID目录的符号链接.
 - /proc/pid/fd和/proc/pid/fdinfo：是个目录，里面每项包含进程打开的文件，文件名为文件描述符，是一个实际文件的符号链接.
 - /proc/pid/cmdline：进程执行的完整命令行.
 - /proc/pid/environ：进程的环境变量.

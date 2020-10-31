@@ -60,7 +60,7 @@
 - CODE(Code size, kb): 用于可执行代码段的物理内存的大小, 通常也被称为文本段(text resident)或TRS.
 - DATA(Data+Stack size, kb): 除了CODE外的物理内存的大小, 通常称为数据段(data resident)或DRS.
 - SHR(Shared Mem Size, kb): 任务使用的共享内存的大小.
-- nFLT(Page Fault count): 当前任务发送page falut(主要是缺页)的数量.
+- nFLT(Page Fault count): 当前任务发生page falut(主要是缺页)的数量.
 - nDRT(Dirty Page count): 距离上次写盘到现在, 已被修改的页的数量.
 
 ## (3)操作:

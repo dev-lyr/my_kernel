@@ -33,10 +33,11 @@
 
 ## (5)相关命令和函数：
 - kill -l：显示系统支持的信号.
-- kill -signal pid：向进程/进程组发送信号, pid可为5中形式: n(n>0);0;-1;-n(进程组为n的所有进程发生信号);commandname.
+- kill -signal pid：向进程/进程组发送信号, pid可为5类形式: n(n>0);0;-1;-n(进程组为n的所有进程发生信号);commandname.
 - pkill -signal name：signal processes based on name and other attributes.
 - kill函数：将信号发射给进程或进程组.
 - raise函数：允许进程向自己发送信号.
+- trap: 当收到指定信号时执行指定的操作.
 
 ## (6)signal函数:
 - sighandler_t signal(int signum，sighandler_t handler)；

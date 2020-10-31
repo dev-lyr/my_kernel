@@ -1,6 +1,9 @@
 # 一 概述:
 ## (1)功能:
-- netfilter框架: 包过滤(filtering), 网络地址转换(NA[P]T)和其它包管理(mangling).
+- 包过滤: 有状态和无状态的包过滤.
+- NAT/NAPT: 所有类型的网络地址和端口translation.
+- do further packet manipulation (mangling) like altering the TOS/DSCP/ECN bits of the IP header.
+- 等等.
 
 ## (2)组成:
 - **netfilter**: 由内核中一系列**hook**组成, hook允许内核模块在网络协议栈注册callback函数, 当每个包穿过(traverse)对应网络协议栈中的对应hook时callback函数会被调用.

@@ -14,19 +14,19 @@
 - int exit_code, exit_signal
 
 ## (3)进程间关系:
-- struct task_struct *real_parent：创建该进程的进程的进程描述符，若该进程不再存在，则指向进程1(init)的描述符.
-- struct list_head childre：该进程创建的孩子进程.
-- struct list_head sibling：兄弟进程.
-- struct task_struct *parent.
-- struct task_struct * group_leader: 进程组领头进程的进程描述符.
+- real_parent：创建该进程的进程的进程描述符，若该进程不再存在，则指向进程1(init)的描述符.
+- children：该进程创建的孩子进程.
+- sibling：兄弟进程.
+- parent.
+- group_leader: 进程组领头进程的进程描述符.
 
 ## (4)文件系统和文件相关:
-- struct files_struct *files：描述符表. clone的CLONE_FILES控制父子进程间是否共享.
-- struct fs_struct * fs: 记录进程的root目录和当前工作目录, root目录可通过chroot修改, 当前工作目录可通过chdir修改.
+- files：描述符表. clone的CLONE_FILES控制父子进程间是否共享.
+- fs: 记录进程的root目录和当前工作目录, root目录可通过chroot修改, 当前工作目录可通过chdir修改.
 
 ## (5)内存相关:
-- struct mm_struct *mm:进程所拥有的内存描述符, 存放与进程地址空间有关的全部信息.
-- struct mm_struct *active_mm.
+- mm:进程所拥有的内存描述符, 存放与进程地址空间有关的全部信息.
+- active_mm.
 - 备注:普通进程两个字段存放相同的指针；由于内核线程没有任何内存描述符,则内核线程的mm总为NULL.
 
 ## (6)上下文切换相关:

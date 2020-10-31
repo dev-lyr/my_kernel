@@ -89,7 +89,7 @@
 - vmstat
 - free
 
-# 五 IO和磁盘和文件系统相关：
+# 五 IO相关:
 ## (1)常用命令:
 - iostat
 - fio

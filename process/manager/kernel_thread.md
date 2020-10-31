@@ -17,14 +17,17 @@
 - _do_fork(flags|CLONE_VM|CLONE_UNTRACED, ...).
 
 # 三 常见内核线程:
-## (1)进程1(init/systemd).
+## (1)基本:
+- pid为0: idle进程.
+- pid为1: (init/systemd).
+- pid为2: kthreadd
 
 ## (2)ksoftirqd/n:
 - 每个cpu都有一个ksoftirqd线程, n代表cpu的编号, 详见软中断.
 
 ## (3)kswapd:
 - 执行内存回收(页框回收).
--  mm/vmscan.c.
+- mm/vmscan.c.
 
 ## (4)pdflush(centos6后flush):
 - 将脏的磁盘高速缓存中的页刷新到磁盘.

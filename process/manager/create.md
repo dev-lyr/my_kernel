@@ -21,6 +21,7 @@
 - 用来创建子进程.
 - 与fork类似, 不同的是clone允许子进程共享调用进程(即父进程)的部分执行上下文, 例如: 虚拟地址空间, 文件描述符表和信号处理表等.
 - clone可以用来实现线程: 在一个程序中多个控制流在一个共享的地址空间中执行.
+- clone: _do_fork(clone_flags, ...)
 
 ## (2)相关clone flags:
 - **CLONE_PARENT** : 若设置, 则新进程的父进程是调用进程的父进程; 若不设置, 则新建进程的父进程为调用进程.
@@ -28,21 +29,23 @@
 - **CLONE_FILES** : 若设置, 则调用进程和新进程共享文件描述符表, 任何被调用进程和新进程创建的文件描述符对其它进程都是可用的, 关闭和修改文件描述符对其它进程也受影响; 若不设置, 则新进程copy调用进程的所有打开的文件描述符, 修改文件描述符对其它进程无影响.
 - **CLONE_NEWNS** : 所有进程都活在namespace里, 若不设置, 则子进程和父进程存在于同一namespace; 若设置, 则cloned进程在新的namespace; 若设置, 则cloned进程在新的namespace里, 以父进程的namespace副本初始化.
 - **CLONE_SIGHAND** : 若设置, 则子进程和父进程共享信号handler表, 调用sigaction改变相关信号的handler则会影响所有进程; 若不设置, 则子进程copy信号的handler表.
-- **CLONE_VFORK** : 若设置, 则调用进程被暂停(suspended)直至子进程通过execve或_exit释放虚拟地址空间; 若不设置, 则子进程和调用进程都会被调度执行, 任意顺序.
+- **CLONE_VFORK** : 若设置, 则调用进程被暂停(suspended)直至子进程通过execve或退出释放虚拟地址空间; 若不设置, 则子进程和调用进程都会被调度执行, 任意顺序.
 - **CLONE_VM** : 若设置, 则子进程和调用进程在同一内存空间执行, 内存的写对其它进程都是可见的, 并且任何内存mapping和unmapping都会影响其它进程; 若不设置,则子进程在一个独立的调用进程的内存空间副本中执行.
 - **CLONE_THREAD** : 若设置, 则子进程和调用进程在同一线程组, 线程组用来支持POSIX线程中多个线程共享同一个PID, 在内部该PID也被称为线程组ID(TGID), getpid返回调用者的TGID, 线程组里的线程可以线程ID(TID)来区分, gettid返回; 若不设置, 则新建线程在一个新的线程组里, 线程组的TGID为线程的TID, 且该线程是线程组的领头.
 - 参考: include/uapi/linux/sched.h.
 
-# 三 fork和vfork和clone:
-## (1)实现:
+# 三 fork:
+## (1)概述:
 - fork: _do_fork(SIGCHLD, 0, 0, NULL, NULL, 0)
+
+# 四 vfork:
+## (1)概述:
 - vfork: _do_fork(CLONE_VFORK|CLONE_VM|SIGCHLD, 0, 0, NULL, NUll, 0)
-- clone: _do_fork(clone_flags, ...)
 
 ## (2)备注:
 - vfork和fork区别: vfork创建的子进程和父进程共享相同的内存地址空间, 不用复制父进程的页表(page table), 但父进程会一直阻塞直至子进程退出(exit)或执行一个新的程序(exec)为止, vfork用在性能敏感且子进程会立即调用exec的应用中.
 
-# 四 pthread_create:
+# 五 pthread_create:
 ## (1)语法:
 - ARCH_CLONE(...)
 - clone_flags: CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SYSVSEM|CLONE_SIGHAND|CLONE_THREAD|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID|0
@@ -50,6 +53,6 @@
 ## (2)备注:
 - glibc/nptl
 
-# 五 内核线程创建(kernel_thread):
+# 六 内核线程创建(kernel_thread):
 ## (1)语法:
 - _do_fork(flags|CLONE_VM|CLONE_UNTRACED, ...).

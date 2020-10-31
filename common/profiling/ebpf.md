@@ -8,6 +8,7 @@
 - 主要推荐的bpf tracing的终端工具是: **bcc**和**bpftrace**.
 - 若寻找工具使用, 先尝试bcc然后再是bpftrace.
 - 若需要自己编程, 则优先尝试bpftrace再试bcc.
+- libbpf库: https://github.com/libbpf/libbpf
 
 ## (3)备注:
 - http://www.brendangregg.com/ebpf.html
@@ -16,4 +17,5 @@
 - https://www.iovisor.org/about
 - kernel源码: kernel/bpf
 - kernel sample代码: samples/bpf
-- bpf系统调用.
+- bpf系统调用(man 2 bpf)
+- https://github.com/cilium/cilium

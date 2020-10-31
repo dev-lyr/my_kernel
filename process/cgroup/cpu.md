@@ -11,13 +11,16 @@
 ## (4)pids:
 - 用来限制一个cgroup可以创建的进程数量, 当超过限制时不能再fork或clone.
 
+## (5)备注:
+- isolcpus
+
 # 二 cpuset:
 ## (1)cpuset.cpus(强制):
 - 指定group中tasks可以访问的cpus.
 - 格式:逗号分隔列表,-表示范围; 例如:0-2,16,表示cpu0,1,2和16.
 
 ## (2)cpuset.cpu_exclusive:
-- contains a flag (0 or 1) that specifies whether cpusets other than this one and its parents and children can share the CPUs specified for this cpuset. 
+- contains a flag (0 or 1) that specifies whether cpusets **other than this one and its parents and children** can share the CPUs specified for this cpuset. 
 - 默认为0: CPUs are not allocated exclusively to one cpuset.
 
 ## (3)cpuset.mems

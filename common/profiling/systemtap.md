@@ -15,7 +15,7 @@
 
 ## (4)SystemTap部署:
 - 部署SystemTap, 以root身份安装两个rpm包: yum install systemtap systemtap-runtime.
-- 使用SystemTap还需安装系统kernel对应的kernel-devel-{uname -r}.rpm, kernel-debuginfo-{uname -r}.rpm和kernel-debuginfo-common-{uname -r}.rpm包, 可使用stap-preq来安装依赖包, 若失败需手动安装.
+- 使用SystemTap还需安装系统kernel对应的kernel-devel-{uname -r}.rpm, kernel-debuginfo-{uname -r}.rpm和kernel-debuginfo-common-{uname -r}.rpm包, 可使用stap-prep来安装依赖包, 若失败需手动安装.
 - 安装后测试: stap -v -e 'probe vfs.read {printf("read performed\n"); exit()}'
 
 ## (5)备注:
@@ -28,7 +28,7 @@
 - 该程序终止方式: 被用户中断; 脚本调用exit函数; 足够多的soft错误.
 
 ## (2)原理:
-- 接收用指定域语言写的probing指令, 将这些指令翻译为C代码, 编译C代码, 并且load最后的module到运行中的linux kernel来执行需要的系统trace/probe函数.
+- 接收用指定语言写的probing指令, 将这些指令翻译为C代码, 编译C代码, 并且load最后的module到运行中的linux kernel来执行需要的系统trace/probe函数.
 
 ## (3)常用选项:
 - -p NUM: 在NUM步骤后停止, 可选值1-5: parse, elaborate, translate, compile和run.

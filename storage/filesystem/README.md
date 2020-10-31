@@ -31,6 +31,7 @@
 
 ## (6)备注: 
 - /proc
+- Documentation/filesystems
 - /dev/zero: 特殊设备文件, 读取时会提供无限空字符, 常用来生产空白文件.
 - /dev/null: 特殊设备文件, 会丢弃写入的一切数据.
 - /proc/filesystems:存放当前内核支持的文件系统类型.
@@ -48,4 +49,5 @@
 - rootfs
 - ramfs
 - sysfs
+- proc
 - 等等.
