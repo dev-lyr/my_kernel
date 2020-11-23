@@ -20,9 +20,14 @@
 ## (4)备注:
 - net/netfilter
 - https://www.netfilter.org/documentation/index.html
+- 架构图: https://www.netfilter.org/documentation/HOWTO/netfilter-hacking-HOWTO-3.html
+- /proc/sys/net/netfilter/
 
 # 二 Hook:
-## (1)Hook支持的协议类型:
+## (1)概述:
+- 不同协议类型的Hook点类型不一样.
+
+## (2)Hook支持的协议类型:
 - NFPROTO_UNSPEC =  0
 - NFPROTO_INET   =  1
 - NFPROTO_IPV4   =  2
@@ -32,9 +37,8 @@
 - NFPROTO_IPV6   = 10
 - NFPROTO_DECNET = 12
 - NFPROTO_NUMPROTO
-- 备注: 不同协议类型的Hook点类型不一样.
 
-## (2)INET的Hook点类型(enum nf_inet_hooks):
+## (3)INET的Hook点类型(enum nf_inet_hooks):
 - NF_INET_PRE_ROUTING: 进方向, 路由之前.
 - NF_INET_LOCAL_IN: 进方向, 路由之后发现是本地.
 - NF_INET_FORWARD: 进方向, 路由之后发现是其它接口, 需要转发.
@@ -43,7 +47,7 @@
 - NE_INET_NUMHOOK
 - 适用于: NFPROTO_INET, NFPROTO_IPV4和NFPROTO_IPV6.
 
-## (3)NFPROTO_BRIDGE的Hook点类型:
+## (4)NFPROTO_BRIDGE的Hook点类型:
 - NF_BR_PRE_ROUTING
 - NF_BR_LOCAL_IN		
 - NF_BR_FORWARD		
@@ -53,17 +57,17 @@
 - NF_BR_NUMHOOKS		
 - 参见: include/uapi/linux/netfilter_bridge.h
 
-## (4)NFPROTO_ARP的Hook点类型:
+## (5)NFPROTO_ARP的Hook点类型:
 - NF_ARP_IN
 - NF_ARP_OUT
 - NF_ARP_FORWARD
 - NF_ARP_NUMHOOKS
 - 参见: include/uapi/linux/netfilter_arp.h
 
-## (5)全局变量:
+## (6)全局变量:
 - hooks[NFPROTO_NUMPROTO][NF_MAX_HOOKS]:各种协议类型的注册的hook的集合, 参考:include/net/netns/netfilter.h
 
-## (6)备注:
+## (7)备注:
 - include/linux/netfilter.h
 - net/netfilter.
 
@@ -83,7 +87,7 @@
 
 # 四 Hook的调用:
 ## (1)调用时机和方式:
-- 在包穿过Hook点时候被调用, 方式为执行NF_HOOK函数.
+- 在包穿过Hook点时候被调用, 方式为执行**NF_HOOK函数**.
 
 ## (2)NF_HOOK(pf, hook ... okfn):
 - 调用该函数执行相应协议的相应hook点的hook函数, 并在hook返回后执行okfn函数.

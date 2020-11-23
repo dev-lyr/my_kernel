@@ -30,7 +30,7 @@
 - 部分信号可产生core dump信息，详见man 7 signal.
 
 ## (3)core文件分析：
-- gdb：gdb 程序 core文件.
+- gdb: gdb 程序 core文件.
 
 ## (4)相关服务:
 - kdump: https://www.kernel.org/doc/Documentation/kdump/kdump.txt

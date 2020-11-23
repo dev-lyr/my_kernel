@@ -20,8 +20,14 @@
 - `-E,--rename-chain old-chain new-chain`: 修改链的名字.
 - `-P,--policy chain target`: 设置chain的target, 只有build-in链可以有target.
 
-## (4)备注:
-- 其它: arptables, ipv6tables, ebtables
+## (4)相关命令:
+- iptables-save
+- iptables-restore
+- arptables
+- ipv6tables
+- ebtables
+
+## (5)备注:
 - nftables: 新版本, 用来替代xxtables, 3.13以后可用, 参考https://www.netfilter.org/projects/nftables.
 
 # 二 表的类型:
@@ -52,7 +58,7 @@
 - match = -m matchname [per-match-options] 
 - target = -j targetname [per-target-options]
 
-## (3)相关参数:
+## (3)相关参数(add, delete, insert, replace and append时使用):
 - `-4,--ipv4`
 - `-6,--ipv6`
 - `[!] -p,--protocol protocol`: rule的协议, 可以是tcp,udp,icmp等等, 协议名字参考/etc/protocols, all代表所有协议, all是默认值, 其中数字0等同于all. 可以通过!进行取反.
@@ -62,10 +68,31 @@
 - `-j,--jump target`: 指定rule的target, 指定当rule match时需做什么, target可以是: 用户自定义的chain, 内置的target或一个扩展.
 - `-g, --goto chain`.
 
-# 四 target:
+## (4)备注:
+- iptables-extensions: iptables的扩展, 支持match扩展和target扩展.
+
+# 四 match:
+## (1)概述:
+- iptables可使用-m或--match选项来使用extended match模块.
+
+## (2)match extensions:
+- comment: 允许给rule添加comment(最多256字符).
+- tcp
+- udp
+- statistic
+- 等等.
+
+# 五 target:
 ## (1)类型:
 - ACCEPT：let the packet through.
 - DROP：drop the packet on the floor.
 - RETURN：stop traversing this chain  and  resume at  the  next  rule in the previous (calling) chain. If the end of a built-in chain is reached or a rule in a built-in chain with target RETURN is matched, the target specified by the chain policy determines the fate of the packet.
 - 自定义链
 - iptables-extensions中定义的target.
+
+## (2)target extensions:
+- SNAT
+- DNAT 
+- MARK
+- CONNMARK
+- 等等.
