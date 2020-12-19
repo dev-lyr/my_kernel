@@ -9,4 +9,5 @@
 
 ## (3)备注:
 - Documentation/kprobe.txt
+- kernel/kprobes.c
 - 被systemtap,ebpf等使用.

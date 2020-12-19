@@ -2,5 +2,4 @@
 ## (1)概述:
 
 ## (2)相关命令:
-- pvcreate
-- pvremove
+- mdadm

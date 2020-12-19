@@ -8,5 +8,8 @@
 - su,sudo
 - whoami
 - who
+- id
 
-## (3)相关文件
+## (3)相关文件:
+- /etc/passwd
+- /etc/sudoers

@@ -28,3 +28,10 @@
 ## (3)静态tracing:
 - tracepoints
 - USDT(User Statically-Defined Tracing)
+
+## (4)相关frontends工具:
+- systemtap
+- ftrace
+
+## (5)备注:
+- Documentation/trace
