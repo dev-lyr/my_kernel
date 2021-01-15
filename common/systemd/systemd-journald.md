@@ -2,7 +2,8 @@
 ## (1)功能:
 - systemd-journald是一个用来收集和存储日志数据的系统服务.
 - 创建和维护结构化,可索引日志数据, 可接收多种日志数据源.
-- 默认, journal将日志数据存储到/run/log/journal, 因为/run是变化的, 当机器重启时日志数据会丢失; 若需持久化, 需创建/var/log/jounal/目录来存储日志数据.
+- 默认,journal将日志数据存储到/run/log/journal, 因为/run是变化的, 当机器重启时日志数据会丢失.
+- 若需持久化, 需创建/var/log/jounal/目录来存储日志数据.
 
 ## (2)日志数据源:
 - kernel日志信息, 通过kmsg.
@@ -33,5 +34,12 @@
 
 # 三 配置:
 ## (1)概述:
-- man journaled.conf
+- man journald.conf
+
+## (2)日志转发:
+- ForwardToSyslog
+- ForwardToKMsg
+- ForwardToConsole
+- ForwardToWall
+- 备注: Control whether log messages received by the journal daemon shall be forwarded to a traditional syslog daemon, to the kernel log buffer (kmsg), to the system console, or sent as wall messages to all logged-in users.
 

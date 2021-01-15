@@ -16,7 +16,7 @@
 ## (4)相关文档:
 - Intel: https://software.intel.com/en-us/articles/intel-sdm
 - Redhat: https://www.redhat.com/en
-- 内核的Documentation/*.
+- 内核的Documentation.
 - http://www.brendangregg.com/overview.html
 
 # 二 内核编译:

@@ -10,8 +10,6 @@
 - journalctl
 - logrotate命令.
 
-## (3)
-
 ## (3)备注:
 - https://tools.ietf.org/html/rfc5424
 

@@ -41,10 +41,11 @@
 
 # 二 文件系统类型:
 ## (1)概述:
-- file_system_type.
+- file_system_type
 
 ## (2)类型:
-- ext2-4.
+- ext2-4
+- xfs
 - nfs
 - rootfs
 - ramfs

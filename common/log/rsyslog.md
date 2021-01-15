@@ -1,6 +1,7 @@
 # 一 概述:
 ## (1)功能:
-- **Rsyslog** is a rocket-fast system for log processing. It offers high-performance, great security features and a modular design.
+- **Rsyslog** is a rocket-fast system for log processing. 
+- It offers high-performance, great security features and a modular design.
 
 ## (2)备注:
 - 对接kafka: https://www.rsyslog.com/doc/master/configuration/modules/omkafka.html
