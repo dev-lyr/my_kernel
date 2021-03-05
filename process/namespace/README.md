@@ -14,9 +14,14 @@
 - UTS命名空间(CLONE_NEWUTS)：Hostname and NIS domain name.
 - CGROUP命名空间(CLONE_CGROUP): new cgroup namespace.
 
-## (3)备注:
+## (3)相关命令:
+- nsenter命令
+- ip netns
+
+## (4)备注:
 - 文档: Documentation/namespaces.
 - /proc/pid/ns.
+- /proc/net和/proc/mount都重定向到当前进程ns内的文件.
 - man namespaces
 
 # 二 相关API：
@@ -30,3 +35,22 @@
 
 ## (3)unshare：
 - 把调用进程移动到一个新的namespace.
+
+# 三 实现:
+## (1)概述:
+- task_struct的nxproxy指向进程所属的namespaces, 不包含pid_ns.
+
+## (2)nsproxy:
+- atomic_t count
+- uts_ns(struct uts_namespace)
+- ipc_ns(struct ipc_namespace)
+- mnt_ns(struct mnt_namespace)
+- pid_ns_for_children(struct pid_namespace)
+- net_ns(struct net)
+- time_ns(struct time_namespace)
+- time_ns_for_children(struct time_namespace)
+- cgroup_ns(struct cgroup_namespace)
+
+## (3)备注:
+- include/linux/nsproxy.h
+- kernel/nsproxy.c

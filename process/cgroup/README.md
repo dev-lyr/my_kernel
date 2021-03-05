@@ -35,7 +35,7 @@
 
 ## (6)参考:
 - kernel/cgroup:代码.
-- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/resource_management_guide/ch01
+- https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/resource_management_guide/index
 - https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt
 
 # 二 配置文件:

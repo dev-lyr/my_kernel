@@ -15,3 +15,4 @@
 
 ## (4)备注:
 - Documentation/filesystems/tmpfs.txt
+- Documentation/filesystems/ramfs-rootfs-initramfs.rst

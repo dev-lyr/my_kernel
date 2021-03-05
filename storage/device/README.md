@@ -10,3 +10,8 @@
 - include/linux/fs.h
 - include/linux/cdev.h
 - include/linux/kobject.h
+
+## (3)相关命令:
+- mknod
+- mkfs
+- fdisk

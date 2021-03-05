@@ -2,4 +2,5 @@
 ## (1)概述:
 
 ## (2)备注:
-- Documentation/filesystems/sysfs.txt
+- man 5 sysfs
+- Documentation/filesystems/sysfs.rst

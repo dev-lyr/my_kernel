@@ -1,18 +1,19 @@
 # 一 概述:
 ## (1)概述:
-- 页高速缓存中的信息单位为一个完整的数据页.
-- 一个物理页可能有多个不连续的物理磁盘块组成，物理页大小通常位4kB或8kB，而大多数文件系统的磁盘块大小仅仅512字节.
+- The page cache is the main disk cache used by the Linux kernel. In most cases, the kernel refers to the page cache when **reading** from or writing to disk. New pages are added to the page cache to satisfy User Mode processes's read requests. If the page is not already in the cache, a new entry is added to the cache and filled with the data read from the disk. If there is enough free memory, the page is kept in the cache for an indefinite period of time and can then be reused by other processes without accessing the disk.
+- Similarly, before **writing** a page of data to a block device, the kernel verifies whether the corresponding page is already included in the cache; if not, a new entry is added to the cache and filled with the data to be written on disk. The I/O data transfer does not start immediately: the disk update is delayed for a few seconds, thus giving a chance to the processes to further modify the data to be written (in other words, the kernel implements deferred write operations).
 
-# 二 脏页写回(writeback)磁盘:
-## (1)概述:
-- 进程修改了数据, 相应的页就被标记为脏页, 即它的dirty标志生效.
-- enum wb_reason(writeback动作被触发原因), 定义在backing-dev-defs.h.
 
-## (2)延迟写的**缺点**:
-- 若发生硬件错误或掉电, 则无法再获取RAM的内容.
-- 页高速缓存的大小会很大.
+## (2)页缓存类型:
+- page containing date of regular files
+- page containing directories
+- page containing data directly read from block device files(skipping filesystem layer)
+- Pages containing data of User Mode processes that have been swapped out on disk.
+- Pages belonging to files of special filesystems, such as the shm special filesystem used for Interprocess Communication (IPC) shared memory region.
 
-## (3)**脏页写入磁盘时机**:
-- 页高速缓存太慢或脏页太多.
-- 脏页时间太长: pdflush线程(centos 6后为flush).
-- 进程请求对块设备或特定文件进行更新, 通过fsync/sync等系统调用.
+## (3)buffer:
+- In old versions of the Linux kernel, there were two different main disk caches: the **page cache**, which stored whole pages of disk data resulting from accesses to the contents of the disk files, and the **buffer cache**, which was used to keep in memory the contents of the blocks accessed by the VFS to manage the disk-based filesystems.
+- Starting from stable version 2.4.10, the buffer cache does not really exist anymore. In fact, for reasons of efficiency, block buffers are no longer allocated individually; instead, they are stored in dedicated pages called "buffer pages ," which are kept in the page cache.
+
+## (4)备注:
+- 参考深入理解linux内核.

@@ -22,8 +22,8 @@
 - dynamic tracing: dynamic instrumentation, this is a technology that can instrument any software event, such as function calls and returns, by live modification of instruction text.
 
 ## (2)动态tracing:
-- kprobes
-- uprobes
+- kprobes(Kernel Probes)
+- uprobes(user-level dynamic tracing)
 
 ## (3)静态tracing:
 - tracepoints

@@ -9,12 +9,15 @@
 - fork()函数只需为子进程创建一个进程描述符结构，并复制父进程的页表(page table).
 
 ## (3)创建方法:
-- fork()、vfork()和clone库函数根据各自需要的参数标志调用do_fork()来完成大部分创建工作(kernel/fork.c).
+- fork(),vfork()和clone库函数根据各自需要的参数标志调用`_do_fork()`来完成大部分创建工作(kernel/fork.c).
 
 ## (4)进程组
 
 ## (5)线程组:
 - 线程组中多个线程共享同一个PID, 在内部该PID也被称为线程组ID(TGID), getpid返回调用者的TGID, 线程组里的线程可以线程ID(TID)来区分, gettid返回.
+
+## (6)相关:
+- execve
 
 # 二 clone:
 ## (1)功能:
@@ -36,14 +39,21 @@
 
 # 三 fork:
 ## (1)概述:
-- fork: _do_fork(SIGCHLD, 0, 0, NULL, NULL, 0)
+
+## (2)kernel_clone_args参数:
+- exit_signal=SIGCHLD
+
 
 # 四 vfork:
 ## (1)概述:
-- vfork: _do_fork(CLONE_VFORK|CLONE_VM|SIGCHLD, 0, 0, NULL, NUll, 0)
 
-## (2)备注:
+## (2)kernel_clone_args参数:
+- flags: CLONE_VFORK|CLONE_VM
+- exit_signal=SIGCHLD
+
+## (3)备注:
 - vfork和fork区别: vfork创建的子进程和父进程共享相同的内存地址空间, 不用复制父进程的页表(page table), 但父进程会一直阻塞直至子进程退出(exit)或执行一个新的程序(exec)为止, vfork用在性能敏感且子进程会立即调用exec的应用中.
+
 
 # 五 pthread_create:
 ## (1)语法:
