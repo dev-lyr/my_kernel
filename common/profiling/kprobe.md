@@ -8,6 +8,6 @@
 - kretprobes: fires when a specified function returns.
 
 ## (3)备注:
-- Documentation/kprobe.txt
+- https://www.kernel.org/doc/Documentation/kprobes.txt
 - kernel/kprobes.c
 - 被systemtap,ebpf等使用.

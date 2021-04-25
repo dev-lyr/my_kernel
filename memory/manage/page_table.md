@@ -23,3 +23,6 @@
 - PMD_SHIFT
 - PAGE_SHIFT: 指定OFFSET属性的长度.
 - 等等.
+
+## (4)备注:
+- 页表是根据VPN(virutal page number)索引来查找, 因此即使没有使用到的page也会占用一个entry, 所以单级页表会占用很多内存.

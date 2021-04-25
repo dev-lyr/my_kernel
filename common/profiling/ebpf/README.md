@@ -1,6 +1,6 @@
 # 一 概述:
 ## (1)概述:
-- eBPF is a revolutionary technology that can run sandboxed programs in the Linux kernel **without changing kernel source code or loading kernel modules**.
+- eBPF可以在不修改内核代码和不加载kernel modules的情况下载内核中运行sandboxed程序.
 - cbpf(classic bpf): 旧的bpf, tcpdump使用, 如今linux内核只会运行ebpf, loaded cbpf会被透明的翻译为ebpf.
 
 ## (2)术语:
@@ -15,10 +15,13 @@
 
 ## (3)使用:
 - 主要推荐的bpf tracing的frontend工具是: **bcc**和**bpftrace**.
-- bpftrace is ideal for ad hoc instrumentation with powerful custom one-liners and short scripts, whereas bcc is ideal for complex tools and daemons.
+- bpftrace: is ideal for ad hoc instrumentation with powerful custom one-liners and short scripts.
+- bcc: is ideal for complex tools and daemons.
+- 若寻找工具使用则优先尝试bcc, 若需要编写自己的工具则优先尝试bpftrace.
 - libbpf库: https://github.com/libbpf/libbpf
 
 ## (4)备注:
+- https://ebpf.io/
 - http://www.brendangregg.com/ebpf.html
 - https://www.kernel.org/doc/html/latest/networking/filter.html
 - https://github.com/iovisor/bcc
@@ -37,18 +40,8 @@
 - The ability to attach eBPF programs to **trace points** as well as kernel and user application **probe points** allows unprecedented visibility into the runtime behavior of **applications and the system** itself.
 
 ## (3)Observability&Monitoring:
-- Instead of relying on static counters and gauges exposed by the operating system, eBPF enables the collection & in-kernel aggregation of custom metrics and generation of visibility events based on a wide range of possible sources.
+- Instead of relying on static counters and gauges exposed by the operating system, eBPF enables the collection & **in-kernel aggregation** of custom metrics and generation of visibility events based on a wide range of possible sources.
 
 ## (4)Security:
 - Building on the foundation of seeing and understanding all system calls and combining that with a packet and socket-level view of all networking operations allows for revolutionary new approaches to securing systems.
 
-# 三 开发:
-## (1)概述:
-- Linux期望ebpf程序以bytecode的形式被load.
-- 虽然可以直接写字节码, 但更常用是利用编译器(llvm)将pseudo-C代码编译为eBPF字节码.
-- eBPF程序通过bpf系统调用来load到linux内核中.
-- 当eBPF程序被load到内核后, 在attach到请求的hook前需要做2步: **Verification**和**JIT Compilation**.
-
-## (2)maps:
-- eBPF programs can leverage the concept of eBPF maps to store and retrieve data in a wide set of data structures. 
-- eBPF maps can be accessed from eBPF programs as well as from applications in user space via a system call.

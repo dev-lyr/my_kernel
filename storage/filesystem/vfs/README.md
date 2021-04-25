@@ -1,14 +1,14 @@
-# 一 概述：
-## (1)功能：
+# 一 概述:
+## (1)功能:
 - VFS是一个内核软件层,将不同种类文件系统的共同信息放入内核,支持Linux支持的所有文件系统的任何操作.
-- VFS将每个读、写或其它函数,替换为本地linux文件系统、NTFS文件系统或文件所在的其它文件系统的实际函数.
+- VFS将每个读写或其它函数,替换为本地linux文件系统或NTFS文件系统或文件所在的其它文件系统的实际函数.
 
-## (2)VFS支持文件系统类型：
-- 磁盘文件系统：管理本地磁盘分区中的可用存储空间,例如：linux的Ext3，windows的ntfs等.
-- 网络文件系统：允许访问其它机器上文件系统包含的文件.
-- 特殊文件系统：例如/proc文件系统.
+## (2)VFS支持文件系统类型:
+- 磁盘文件系统: 管理本地磁盘分区中的可用存储空间.例如:linux的Ext3,windows的ntfs等.
+- 网络文件系统: 允许访问其它机器上文件系统包含的文件.
+- 特殊文件系统: 例如/proc文件系统.
 
-## (3)文件类型：
+## (3)文件类型:
 - 普通文件
 - 目录: vfs把目录当文件对待.
 - 字符设备文件
@@ -22,18 +22,21 @@
 - 符号链接: 对一个文件的间接指针, 文件内容是符号链接锁指向的文件的名字; 无文件系统限制; 任何用户可创建; 有自己的inode.
 - 相关命令: stat.
 
-# 二 对象类型：
-## (1)超级块(struct super_block)：
+# 二 对象类型:
+## (1)概述:
+- include/linux/fs.h
+
+## (2)超级块(struct super_block):
 - 存放已安装文件系统的有关信息,对于基于磁盘的文件系统，这类对象通常存放于磁盘上的文件系统控制块(filesystem control block).
 - 超级块对象由super_block结构组成(fs.h).
 
-## (2)索引节点(struct inode)
+## (3)索引节点(struct inode)
 - 存放具体文件的信息,对基于磁盘的文件系统，这类对象通常对应于存放在磁盘上的文件控制块(file control block).
 - 每个索引节点对象都有一个索引节点号,这个节点号唯一标识文件系统中的文件.
 - 每个文件(或目录)都有且只有一个inode.
 - 索引节点对象由inode结构组成(fs.h).
 
-## (3)文件(struct file):
+## (4)文件(struct file):
 - 包含访问模式、位置偏移等信息.
 - 存放打开文件与进程之间进行交互的相关信息,仅当进程访问文件期间存在于内核内存中.
 - 文件对象是在文件被打开(open())时创建的,close()调用时销毁(f_count为0时)，由file结构组成，文件对象在磁盘上没有对应映像，因此file结构没有‘脏’字段标记文件对象是否被修改.
@@ -41,14 +44,14 @@
 - 父子进程时,子进程与父进程共享父进程已打开文件文件的文件对象(注意是已打开),struct file的f_count记录使用该文件对象的进程数量.
 - clone()调用的CLONE_FILES可以设置子进程是否和父进程共享描述符表(descriptor table, struct task_struct的files字段指向内容),files字段count记录使用使用该打开文件表的进程的数量.
 
-## (4)目录项(dentry object)：
+## (5)目录项(dentry object):
 - 主要用途建立文件名和相关inode之间的关联, 加速查找.
 - VFS把目录看做由若干子目录和文件组成的一个普通文件,但是一旦目录项被读入内存,VFS把它转换成基于dentry结构的一个目录项对象.
 - 对于进程查找路径中的每个部分都会创建一个目录项对象, 目录项对象在磁盘上也没有对应映像.
 
 # 三 与进程相关结构:
 ## (1)概述:
-- files(struct files_struct)：文件描述符表. 
+- files(struct files_struct):文件描述符表. 
 - fs(struct fs_struct): 记录进程的root目录和当前目录.
 
 ## (2)struct files_struct:
@@ -66,7 +69,7 @@
 - clone的CLONE_FILES控制父子进程间是否共享文件描述符表.
 - NF_OPEN_DEFAULT: 控制默认情况下内核允许进出打开文件个数.
 
-# 四 超级块:
+# 四 super_block:
 ## (1)struct super_block:
 - s_op(struct super_operations): 超级块的方法.
 - s_type(struct file_system_type): 文件系统类型.
@@ -80,8 +83,9 @@
 - dirty_inode: 当索引节点标记为脏(dirty)调用该函数, 例如:Ext3用该函数来更新磁盘上的文件系统日志.
 - write_inode: 更新文件系统的索引节点.
 
-# 五 索引对象:
+# 五 inode对象:
 ## (1)struct inode:
+- umode_t i_mode: 文件类型, 常规文件,字符设备文件,块设备文件等.
 - atomic_t i_count: 引用计数.
 - i_op(struct inode_operations): 索引节点操作表, 描述VFS操作索引节点对象的所有方法, 这些方法由**文件系统**实现.
 - i_fop(struct file_operations): 缺省文件操作.
@@ -94,7 +98,7 @@
 - unlink: 被系统调用unlink调用, 删除目录中目录项指定的文件的硬连接,i_nlink会减去1, 删除文件时, 内核先检查打开文件的进程个数i_count, 为0再去检查i_nlink,若也为0才会删除文件的内容(释放空间).
 - symlink: 被系统调用symlink调用, 创建符号链接.
 
-# 六 目录项对象:
+# 六 dentry对象:
 ## (1)struct dentry:
 - atomic_t d_count: 使用计数.
 - inode(struct inode) : 相关索引节点.
@@ -107,8 +111,9 @@
 
 ## (3)目录项缓存.
 
-# 七 文件对象:
+# 七 file对象:
 ## (1)struct file:
+- fmode_t f_mode 
 - atomic_t f_count: 文件对象的使用计数, 记录使用文件对象的进程数.
 - struct file_operations * f_op: 文件操作表, 由**具体的文件系统提供**. 当内核将索引节点从磁盘装入内存时, 就会把文件操作放入索引节点对象的i_fop字段, 当进程打开该文件时, vfs就会用索引对象的i_fop初始化新文件对象f_op字段, 使得文件操作的能够使用这些函数, 如需要vfs可以在f_op存放新的值来修改文件操作集合, 例如:socket.
 - f_dentry: 相关目录项对象.

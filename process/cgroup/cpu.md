@@ -8,12 +8,6 @@
 ## (3)cpuacct子系统:
 - 生成cgroup中task使用的cpu资源的统计, 包含子groups中的tasks.
 
-## (4)pids:
-- 用来限制一个cgroup可以创建的进程数量, 当超过限制时不能再fork或clone.
-
-## (5)备注:
-- isolcpus
-
 # 二 cpuset:
 ## (1)cpuset.cpus(强制):
 - 指定group中tasks可以访问的cpus.

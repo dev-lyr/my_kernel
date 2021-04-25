@@ -73,4 +73,4 @@
 - malloc, calloc,realloc和free.
 - brk(malloc调用):系统调用.
 - sbrk:c库封装函数.
-- 备注:brk与其他函数不同, 它是系统调用, 其他函数都是使用brk和mmap系统调用使用的C语言库函数.
+- 备注:brk与其他函数不同,它是系统调用,其他函数都是使用brk和mmap系统调用使用的C语言库函数.

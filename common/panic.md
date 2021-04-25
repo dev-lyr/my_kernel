@@ -24,10 +24,12 @@
 # 二 coredump：
 ## (1)概述：
 - man 5 core.
-- ulimit -a/-c.
+- ulimit -a/-c
 
 ## (2)core文件产生：
 - 部分信号可产生core dump信息，详见man 7 signal.
+- 临时开启: ulimit -c xx
+- 永久开启: /etc/security/limits.conf
 
 ## (3)core文件分析：
 - gdb: gdb 程序 core文件.

@@ -8,7 +8,7 @@
 - gprof
 - kgdb
 
-## (2)frontends工具:
+## (2)前端工具:
 - 对底层技术进行封装, 更方便用户使用.
 - 例如: systemtap(基于kprobe),perf,bcc(基于ebpf)等.
 

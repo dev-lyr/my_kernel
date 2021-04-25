@@ -5,4 +5,4 @@
 - netfilter也可以根据该tag来包上执行一些操作.
 
 ## (2)net_prio子系统:
-- Network Priority cgroup提供一个让管理员来动态设置各应用网络流量优先级的借口.
+- Network Priority cgroup提供一个让管理员来动态设置各应用网络流量优先级的接口.

@@ -20,6 +20,8 @@
 
 ## (5)备注:
 - http://sourceware.org/systemtap/
+- http://debuginfo.centos.org/
+- https://sourceware.org/systemtap/SystemTap_Beginners_Guide/
 
 # 二 stap命令:
 ## (1)功能:
@@ -32,27 +34,3 @@
 
 ## (3)常用选项:
 - -p NUM: 在NUM步骤后停止, 可选值1-5: parse, elaborate, translate, compile和run.
-
-# 三 SystemTap脚本:
-## (1)概述:
-- SystemTap脚本是SystemTap会话的基础, 脚本控制SystemTap收集上面类型的消息以及收集到消息后怎么处理.
-- SystemTap脚本由两块组成:events和handlers, 一旦SystemTap session运行中, SystemTap monitor系统的指定事件, 并在事件发生时执行对应handler.
-- Tapsets: /usr/share/systemtap/tapset/, 预定义的一些probe和函数库, 可在SystemTap脚本中使用.
-- SystemTap脚本以.stp命令.
-- An event and its corresponding handler is collectively called a probe, SystemTap脚本可以包含多个probe.
-
-## (2)语法:
-- probe的格式: probe event {语句}, 支持单个probe多个event, 事件以逗号分开, 当任一一个事件发生时handler都会执行.
-- function格式: function 函数名(参数){语句}, 主要是为了避免重复语句.
-
-## (3)events
-- 分为两类: 同步事件和异步事件.
-- 同步事件: syscall.system_call, vsf.file_operation, kernel_function("function")等.
-- 异步事件: begin, end, timer events.
-
-## (4)handlers
-- probe的handler通常也称作probe body, 即{}内的语句.
-
-# 四 用户空间probe:
-## (1)概述:
-- SystemTap最初聚集在kernel-space probing, 从SystemTap0.6开始支持用户空间进程probing.

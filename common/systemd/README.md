@@ -16,6 +16,7 @@
 - supervisor: http://supervisord.org/
 
 ## (5)备注:
+- https://www.freedesktop.org/wiki/Software/systemd/
 - https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/index
 
 # 二 systemd units:
