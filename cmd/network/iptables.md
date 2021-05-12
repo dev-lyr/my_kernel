@@ -95,4 +95,5 @@
 - DNAT 
 - MARK
 - CONNMARK
+- MASQUERADE: 只在nat表的POSTROUTING链中用, 只应用用于动态分配IP的网络连接,若有1个静态IP地址则应该使用SNAT.
 - 等等.

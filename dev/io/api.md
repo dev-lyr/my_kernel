@@ -4,9 +4,8 @@
 - 相关: socket创建套接字文件, mkfifo创建一个FIFO文件.
 
 ## (2)语法:
-- int open(const char *pathname, int flags);
-- int open(const char *pathname, int flags, mode_t mode);
-- int creat(const char *pathname, mode_t mode);
+- open
+- creat
 
 ## (3)flags:
 - O_APPEND: 文件以append模式打开, 在每个write前, 文件offset都被放置在文件末尾(类似lseek).
@@ -53,4 +52,5 @@
 
 ## (2)lseek
 
+## (3)fsync
 

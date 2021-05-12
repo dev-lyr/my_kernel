@@ -13,6 +13,7 @@
 - httperf
 - netperf
 - tcpdump
+- iperf
 
 ## (2)常用指标：
 - BPS(b/s): 例如: 万兆网卡为10Gb/s.

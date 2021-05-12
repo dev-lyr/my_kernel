@@ -26,10 +26,18 @@
 # 二 link:
 ## (1)概述:
 - 功能: 网络设备配置.
-- 语法: ip link {command|help}, command: add,delete,set,show,xstats,afstats. 
+- 语法: ip link {command|help}. 
 - man ip-link.
 
-## (2)type:
+## (2)command:
+- add
+- delete
+- set
+- show
+- xstats
+- afstats
+
+## (3)type:
 - bridge
 - bridge_slave
 - veth
@@ -38,14 +46,14 @@
 - bond_slave
 - 等等.
 
-## (3)add:
+## (4)add:
 - 功能: 添加virtual link.
-
-## (4)set:
-- 功能: 修改设备的属性.
 
 ## (5)show:
 - 功能: 展示设备属性.
+
+## (6)set:
+- 功能: 修改设备的属性.
 
 # 三 netns:
 ## (1)概述:

@@ -18,10 +18,10 @@
 - nftables: 用来替换{ip,ip6,arp,eb}tables
 
 ## (4)备注:
-- net/netfilter
-- https://www.netfilter.org/documentation/index.html
-- 架构图: https://www.netfilter.org/documentation/HOWTO/netfilter-hacking-HOWTO-3.html
 - /proc/sys/net/netfilter/
+- https://www.netfilter.org/documentation/index.html
+- https://www.netfilter.org/documentation/HOWTO/netfilter-hacking-HOWTO.html
+- 架构图: https://www.netfilter.org/documentation/HOWTO/netfilter-hacking-HOWTO-3.html
 
 # 二 Hook:
 ## (1)概述:

@@ -1,8 +1,7 @@
 # 一 概述:
 ## (1)概述:
 - VXLAN: Virtual eXtensible Local Area Network.
-- VXLAN: 一个在3层网络的2层overlay方案.
-- 由于进行了封装(encapsulation), VXLAN也被称作一个工作在3层的2层overlay隧道方案.
+- VXLAN is an **encapsulation** technique in which layer 2 ethernet frames are encapsulated in UDP packets
 - 功能: address the need for **overlay networks** within virtualized data centers accommodating **multiple tenants**.
 
 ## (2)背景:
@@ -17,6 +16,7 @@
 - VXLAN Gateway: an entity that forwards traffic between VXLANs.
 
 ## (4)备注:
+- 操作: ip link
 - https://tools.ietf.org/html/rfc7348
 - VXLAN GPE
 - Documentation/networking/vxlan.txt
