@@ -26,4 +26,3 @@
 ## (2)ip link
 
 ## (3)bridge
-

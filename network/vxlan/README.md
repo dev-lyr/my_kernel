@@ -1,8 +1,8 @@
 # 一 概述:
 ## (1)概述:
-- VXLAN: Virtual eXtensible Local Area Network.
-- VXLAN is an **encapsulation** technique in which layer 2 ethernet frames are encapsulated in UDP packets
 - 功能: address the need for **overlay networks** within virtualized data centers accommodating **multiple tenants**.
+- VXLAN: Virtual eXtensible Local Area Network.
+- VXLAN is an **encapsulation** technique in which layer 2 ethernet frames are encapsulated in **UDP packets**.
 
 ## (2)背景:
 - 服务器虚拟化增长了对物理网络设备的需求, 一个物理机有多个有自己mac地址的虚拟机, 这就需要在链路层的交换设备有一个大的MAC地址表.
@@ -10,10 +10,10 @@
 - 等等.
    
 ## (3)相关名词:
-- VNI: vxlan network identifier(或vxlan segment id).
-- VTEP: vxlan tunnel end point, vxlan tunnel的起点或终点.
-- VXLAN Segment: VXLAN Layer 2 overlay network over which VMs communicate.
-- VXLAN Gateway: an entity that forwards traffic between VXLANs.
+- **VTEP**: vxlan tunnel end point, vxlan tunnel的起点或终点.
+- **VNI**: vxlan network identifier(或vxlan segment id).
+- **VXLAN Segment**: VXLAN Layer 2 overlay network over which VMs communicate.
+- **VXLAN Gateway**: an entity that forwards traffic between VXLANs.
 
 ## (4)备注:
 - 操作: ip link
@@ -24,7 +24,7 @@
 
 # 二 VXLAN帧格式
 ## (1)概述:
-- 格式: 在内部mac帧进行封装,增加四个头部(从内到外): VXLAN Header(8个字节), Outer UDP Header, Outer IP Header和Outer Etherner Head.
+- 格式: 在mac帧内部进行封装,增加四个头部(从内到外): VXLAN Header(8个字节), Outer UDP Header, Outer IP Header和Outer Etherner Head.
 
 ## (2)VXLAN Header:
 - Flags(8位): 对于一个合法的VNI, I flag需设置为1, 其它7位(R)保留且发送时必须设置为0且接收时忽略.
@@ -32,7 +32,7 @@
 - Reserved Fileds(24位和8位): 发送时设置为0,接收时忽略.
 
 ## (3)Outer UDP Header:
-- 目的port: IANA分配4789作为VXLAN UDP端口,目的端口应该使用该默认值.
+- 目的port: IANA分配4789作为VXLAN UDP端口,linux使用8472,可配置.
 - 源port
 - UDP Checksum
 

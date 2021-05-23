@@ -4,7 +4,7 @@
 - veth设备是虚拟设备.
 
 ## (2)功能:
-- act as **tunnels between network namespaces** to create a bridge to a physical network device in another namespace.
+- act as **tunnels between network namespaces** to create a bridge to a physical network device in **another namespace**.
 - used as standalone network devices.
 
 ## (3)备注:
