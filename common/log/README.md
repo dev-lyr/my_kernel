@@ -12,7 +12,7 @@
 
 ## (3)备注:
 - https://tools.ietf.org/html/rfc5424
-
+- /dev/kmsg
 
 # 二 printk:
 ## (1)功能:

@@ -45,6 +45,9 @@
 - cpu.rt_period_us
 - cpu.rt_runtime_us
 
+## (5)概述:
+- https://www.kernel.org/doc/html/latest/scheduler/sched-bwc.html
+
 # 四 cpuacct:
 ## (1)cpuacct.usage:
 - 统计cgroup中所有tasks(包括子cgroup中的task)使用的全部CPU时间, 单位为纳秒.
